@@ -26,7 +26,7 @@ cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_
 	#include <fcntl.h>
 	#include <stdio.h>
 	#include "get_next_line.h"
-   ```
+   
 
 int main(void)
 {
@@ -40,6 +40,7 @@ int main(void)
     close(fd);
     return (0);
 }
+```
 
 ## Algorithm & Justification
 

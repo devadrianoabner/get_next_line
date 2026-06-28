@@ -6,7 +6,7 @@
 /*   By: adrianda <adrianda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 18:32:20 by adrianda          #+#    #+#             */
-/*   Updated: 2026/06/25 18:35:47 by adrianda         ###   ########.fr       */
+/*   Updated: 2026/06/28 15:10:58 by adrianda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,10 @@
 # endif
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(char *str);
+void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif

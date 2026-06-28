@@ -6,6 +6,16 @@
 
 While it sounds simple, this project serves as a deep dive into the concept of **static variables** in C and advanced memory management. The core challenge is maintaining the state (the unreturned, "leftover" characters read from the file) between multiple calls to the function without losing data or causing memory leaks. It pushes the boundaries of handling unpredictable edge cases, such as arbitrary buffer sizes, file reading errors, and EOF (End of File) handling without leaving dangling pointers.
 
+### The Journey & Challenges
+
+My biggest challenge in this project was mastering the flow of data: managing storage, line breaks, and return values. As the logic grew more complex, I constantly had to introduce new temporary variables just to preserve data states or hold memory references safely. 
+
+To handle string manipulation, I adapted functions from my first project, [libft](https://github.com/devadrianoabner/lib_ft). Unlike my work on [ft_printf](https://github.com/devadrianoabner/ft_printf) where the entire library could be linked, the GNL subject strictly forbids using the compiled `libft` archive. Instead, I had to extract and modify specific utility functions to meet GNL's strict memory and bug-prevention requirements.
+
+The second major hurdle was defensive programming—figuring out exactly where and how to implement memory checks to prevent memory leaks and segmentation faults during execution.
+
+GNL was my third project at École 42. While I feel I still have a lot to learn to truly master memory management in C, this project represents a massive leap in my technical development and debugging skills compared to my earlier work.
+
 ## Instructions
 
 ### Build
@@ -17,30 +27,32 @@ Compile your code with `get_next_line.c` and `get_next_line_utils.c`:
 ```bash
 cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 main.c get_next_line.c get_next_line_utils.c -o gnl
 
+```
 (If no BUFFER_SIZE is provided during compilation, the header defaults to 42).
 
 ### Use in another project
 
 1. Include the header in your C files and call the function within a loop to read a file line by line:
-   ```c
+
+	```c
 	#include <fcntl.h>
 	#include <stdio.h>
 	#include "get_next_line.h"
-   
-
-int main(void)
-{
-    int fd = open("example.txt", O_RDONLY);
-    char *line;
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        printf("%s", line);
-        free(line);
-    }
-    close(fd);
-    return (0);
-}
-```
+	
+	
+	int main(void)
+	{
+		int	fd = open("example.txt", O_RDONLY);
+		char	*line;
+		while ((line = get_next_line(fd)) != NULL)
+		{
+			printf("%s", line);
+			free(line);
+		}
+		close(fd);
+		return (0);
+	}
+	```
 
 ## Algorithm & Justification
 
